@@ -8,6 +8,9 @@
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}" >
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/FL.png') }}" >
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/p1.jpeg') }}" >
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/bg.png') }}" >
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/title.png') }}" >
+
 
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/p2.jpeg') }}" >
 
@@ -25,8 +28,23 @@
         padding: 0;
         width: 100%;
         overflow-x: hidden;
+        
+    }
+    :root {
+        --sky-blue: #e6f2ff;
+  --deep-blue: #0f213b;
+  --medium-blue: #264274;
+  --light-blue: #235883;
+  --white: #ffffff;
+        --gold: #fcdc3c;
     }
 
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
     header {
         background: linear-gradient(135deg, #0a1f3d, #042484);
         padding: 10px 20px;
@@ -149,27 +167,20 @@
             display: flex;
         }
     }
-
- 
-
-    :root {
-        --blue: #042484;
-        --gold: #fcdc3c;
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-    }
+    
     .parallax-wrapper {
     height: 100vh;
     width: 100%;
-    background: linear-gradient(135deg, #042484 0%, #031853 100%);
+    background-image: url('/static/images/bg.png');
+    background-size: cover; /* Ajuste l'image pour couvrir tout l'élément */
+    background-position: center; /* Centre l'image */
+    background-repeat: no-repeat; /* Empêche la répétition de l'image */
+    margin: 0; /* Supprime les marges par défaut */
     display: flex;
     align-items: center;
     position: relative;
+    padding: 2rem 5%;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     top: 0;
     left: 0;
     z-index: 1;
@@ -188,47 +199,10 @@
     box-sizing: border-box;
 }
 
-#parallax-container {
-    width: 60%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    padding-top: 50px;
-    box-sizing: border-box;
-    overflow: auto;
-}
-
-.product-row {
-margin:auto;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-}
-
-.product-card {
-    height: 250px;
-    width: 250px;
-    position: relative;
-    flex-shrink: 0;
-    overflow: hidden; /* Empêche l'image de déborder */
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition fluide */
-}
-
-.product-card img {
-    animation: zoomRotateFade 1.5s ease-out forwards;
-    border-radius: 8px; /* Optionnel : pour adoucir les bords de l'image */
-}
 
 
-/* Effet de zoom au survol */
-.product-card:hover img {
-    transform: scale(1.1); /* Zoom de 10% */
-}
+
+
 @keyframes slideUp {
     from {
         opacity: 0;
@@ -241,40 +215,12 @@ margin:auto;
     }
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-.header-icons {
-    display: flex;
-    gap: 2rem;
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeIn 0.8s ease forwards;
-}
-
-.icon-box {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.icon-box i {
-    color: var(--gold);
-    font-size: 1.5rem;
-}
 
 .title {
     font-size: 4.5rem;
     font-weight: bold;
     margin-bottom: 1rem;
-    background: linear-gradient(to right, #ffffff, var(--gold));
+    background: linear-gradient(to right, var(--deep-blue), var(--gold));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     opacity: 0;
@@ -283,7 +229,7 @@ margin:auto;
 
 .subtitle {
     font-size: 1.8rem;
-    color: var(--gold);
+    color: var(--medium-blue);
     margin-bottom: 1.5rem;
     opacity: 0;
     animation: slideUp 0.8s ease 0.4s forwards;
@@ -294,7 +240,7 @@ margin:auto;
     line-height: 1.8;
     max-width: 600px;
     margin-bottom: 2.5rem;
-    color: white;
+    color: var(--deep-blue);
     opacity: 0;
     animation: slideUp 0.8s ease 0.6s forwards;
 }
@@ -318,8 +264,8 @@ margin:auto;
 }
 
 .cta-primary {
-    background: var(--gold);
-    color: var(--blue);
+    background: var(--deep-blue);
+    color: var(--gold);
 }
 
 .cta-secondary {
@@ -354,13 +300,7 @@ margin:auto;
                 text-align: center; /* Center text */
             }
 
-            #parallax-container {
-                width: 100%; /* Take full width */
-                margin-right: 0; /* Remove margin */
-                padding-top: 20px; /* Reduce padding */
-                height: auto;  /* Adjust height */
-                align-items: center;  /* Center images */
-            }
+           
 
             .title {
                 font-size: 3rem; /* Reduce title size */
@@ -373,28 +313,6 @@ margin:auto;
             .description {
                 font-size: 1rem; /* Reduce description size */
             }
-           
-
-            .product-card {
-                width: 50%;
-                margin-bottom: 10px; /* Add some space between images */
-            }
-          .product-row {
-                display: flex;
-                  flex-wrap: wrap;
-                  justify-content: center;
-                  gap: 20px;
-                  width: 100%;
-                  margin-right: 0;
-                  padding: 0;
-          }
-
-            .product-card {
-                flex-basis: calc(50% - 10px); /* Two images per row */
-                max-width: calc(50% - 10px);
-                height: auto; /* Maintain aspect ratio */
-                width: auto;
-            }
 
              .parallax-wrapper {
                 height: auto;
@@ -403,9 +321,7 @@ margin:auto;
                 height: auto;
                 min-height: 100vh;
             }
-          #parallax-container {
-                height: 100%;
-            }
+         
         }
         @media (max-width: 480px) {
             .title {
@@ -433,67 +349,102 @@ margin:auto;
 /* Animation pour les images */
 
 
-
+/* Section de l'image */
 .hero-image {
-        flex: 0 0 45%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-      }
+  flex: 1 1 40%;
+  min-width: 300px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
 
-      .logo-container {
-        position: relative;
-        width: 280px;
-        height: 280px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+/* Conteneur du logo */
+.logo-container {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+  transform-origin: center;
+  /* Animation du logo */
+  animation: float 6s ease-in-out infinite;
+}
 
-      .logo-container::before {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        background: rgba(255, 215, 0, 0.15);
-        animation: pulse 3s infinite ease-in-out;
-      }
+/* Style de l'image */
+.logo-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
 
-      .logo-container::after {
-        content: "";
-        position: absolute;
-        width: 110%;
-        height: 110%;
-        border-radius: 50%;
-        border: 2px solid rgba(255, 215, 0, 0.3);
-      }
+/* Animation de flottement pour l'image */
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+  }
+  50% {
+    transform: translateY(-15px) rotate(2deg);
+    filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.15));
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+  }
+}
 
-      .hero-image img {
-        width: 220px;
-        height: 220px;
-        object-fit: contain;
-        border-radius: 50%;
-        background-color: white;
-        border: 3px solid #ffd700;
-        padding: 10px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-        z-index: 2;
-        animation: float 6s ease-in-out infinite;
-      }
+/* Effet au survol de l'image */
+.logo-container:hover img {
+  transform: scale(1.05);
+  filter: brightness(1.1) contrast(1.05);
+}
 
-      @keyframes float {
-        0% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-15px);
-        }
-        100% {
-          transform: translateY(0px);
-        }
-      }
+/* Effet de particules dorées */
+.logo-container::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+  opacity: 0.5;
+  border-radius: 50%;
+  animation: pulse 3s infinite alternate;
+}
+
+.logo-container::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: -10px;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+  opacity: 0.5;
+  border-radius: 50%;
+  animation: pulse 4s 1s infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+/* Icônes */
+.fas {
+  font-size: 1.1rem;
+}
+
       
 </style>
 <body>
@@ -501,7 +452,7 @@ margin:auto;
     <header>
         <nav>
             <div class="hero-logo">
-                <img src="{{ url_for('static', filename='images/FL.png') }}" alt="Logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
             </div>
             <ul class="nav-links">
                 <li><a href="#">Home</a></li>
@@ -542,7 +493,7 @@ margin:auto;
         <div class="hero-image">
             <div class="logo-container">
               <img
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-e45jzdweCZgOLxR5DxOxc93LvbEZyX.png"
+              src="{{ url_for('static', filename='images/title.png') }}"
                 alt="Legends Club Logo"
               />
             </div>
